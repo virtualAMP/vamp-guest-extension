@@ -1,0 +1,26 @@
+#!/bin/bash
+
+audio_fifo_path=/tmp/vdiguest-audio
+period=1
+if [ $# -eq 1 ]; then
+	period=$1
+fi
+
+prev_nr_mem=0
+audio_gen=0
+while true; do
+	nr_mem=`pacmd stat | grep "POOL:" | awk '{print $7}' | cut -d/ -f2`
+	if [ $nr_mem -gt $prev_nr_mem ]; then
+		echo 1 > $audio_fifo_path
+		audio_gen=1
+	else 
+		# if current stat is audio generating, stop signal to vdiguest
+		if [ $audio_gen -eq 1 ]; then
+			echo 0 > $audio_fifo_path
+		fi
+		audio_gen=0
+	fi
+	prev_nr_mem=$nr_mem
+
+	sleep $period
+done
