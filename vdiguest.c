@@ -658,7 +658,12 @@ int main (int argc, char *argv[])
 	argc -= (optind - 1);
 
 	if (argc < 2 || mode >= MODE_END || mode < 0) {
-		exit_with_msg("Usage: %s [-v <verbose level>, -f <# of fast cpus>, -m <mode>] <keyboard input device file> <mouse input device file> <others> ...\n", argv[0]);
+        int i;
+		fprintf(stderr, "Usage: %s [-v <verbose level>, -f <# of fast cpus>, -m <mode>, -p <irq num to be pinned>, -p <monitoring period>]" 
+                        " <keyboard input device file> <mouse input device file> <others> ...\nAvailable modes:\n", argv[0]);
+        for(i = 0; i < MODE_END; i++)
+            fprintf(stderr, "%i: %s\n", i, mode_desc[i]);
+        exit(-1);
 	}
 
 	if ((getuid()) != 0)
