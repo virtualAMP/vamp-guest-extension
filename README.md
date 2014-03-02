@@ -1,6 +1,6 @@
 Description
 ====
-This is a Linux-based guest OS extension for vAMP. For more information about vAMP, refer to [here](https://github.com/virtualAMP/vamp-linux) first. The role of this extension is to simply isolate interactive tasks on separate vCPUs from background ones in order to prevent different types of tasks from time-sharing a single vCPU. This extension is implemented as a user-land program, which exploits information exposed by the vAMP hypervisor extension through guest kernel. The information indicates which tasks are currently identified as background workloads, and the exposure is done by using shared memory between guest kernel and hypervisor. The kernel lets the user-space program via *procfs*.
+This is a Linux-based guest OS extension for vAMP. For more information about vAMP, refer to [here](https://github.com/virtualAMP/vamp-linux) first. The role of this extension is to simply isolate interactive tasks on separate vCPUs from background ones in order to prevent different types of tasks from time-sharing a single vCPU. This extension is implemented as a user-land program, which exploits information exposed by the vAMP hypervisor extension through guest kernel. The information indicates which tasks are currently identified as background workloads, and the exposure is done by using shared memory between guest kernel and hypervisor. The kernel lets the user-space program refer to the shared memory via *procfs*.
 
 Usage
 ====
