@@ -297,7 +297,7 @@ static int get_fast_cpus_load(void)
 		debug_printf(VB_DEBUG, "\t%s user=%lu nice=%lu sys=%lu idle=%lu iowait=%lu irq=%lu softirq=%lu steal=%lu\n",
 				cpu, user, nice, sys, idle, iowait, irq, softirq, steal);
 		curr_total += user + nice + sys + idle + iowait + irq + softirq + steal + guest + guest_nice;
-		curr_util  += user + nice + sys + + irq + softirq + steal + guest + guest_nice;
+		curr_util  += user + nice + sys + irq + softirq + steal + guest + guest_nice;
 	}
 	fclose(fp);
 
